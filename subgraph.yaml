@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Factory
+    network: bsc
+    source:
+      address: "0xd654CbF99F2907F06c88399AE123606121247D5C"
+      abi: Factory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - PairCreated
+      abis:
+        - name: Factory
+          file: ./abis/Factory.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+      file: ./src/factory.ts
